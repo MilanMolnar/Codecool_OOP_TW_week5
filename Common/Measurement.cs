@@ -1,21 +1,23 @@
-﻿namespace Common
+﻿using System;
+
+namespace Common
 {
     public class Measurement
     {
-        public string Value { get; set; } = "value12";
-        public string MeasurementType { get; set; } = "type12";
-        public Measurement()
+        public DateTime Time { get; set; }
+        public string Value { get; set; }
+        public string MeasurementType { get; set; }
+        public Measurement(){}
+        public Measurement(string value, string measurementType, DateTime time)
         {
-
-        }
-        public Measurement(string value, string measurementType)
-        {
+            Time = time;
             Value = value;
             MeasurementType = measurementType;
         }
         public override string ToString()
         {
-            return $"Value: {Value}, Type: {MeasurementType}";
+            return $"Value: {Value}, Type: {MeasurementType}" +
+                $", Time: {Time.Year}.{Time.Month}.{Time.Day}\\t{Time.Hour}:{Time.Minute}:{Time.Second}";
         }
     }
 }

@@ -9,25 +9,21 @@ namespace Common
 
     public class Sensor
     {
-        public string ID { get; set; } = "12";
+        public string ID { get; set; }
         public Measurement MeasurementOfSensor { get; set; }
-        public Sensor()
-        {
-
-        }
-        public Sensor(string id, Measurement measurementOfSensor)
+        public Sensor(){}
+        public Sensor(string id)
         {
             ID = id;
-            MeasurementOfSensor = measurementOfSensor;
         }
-        public void AddMeasurement()
+        public void AddMeasurement(string value, string measurementType, DateTime time)
         {
-
+            this.MeasurementOfSensor = new Measurement(value, measurementType, time);
         }
 
         public override string ToString()
         {
-            return $"Sensor ID : {ID}, {MeasurementOfSensor}";
+            return $"Sensor ID : {ID}, Type: {MeasurementOfSensor.MeasurementType}, Value: {MeasurementOfSensor.Value}";
         }
     }
 }

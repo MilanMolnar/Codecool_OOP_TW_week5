@@ -11,7 +11,7 @@ namespace Client
     {
         public static void Main()
         {
-            IPAddress ipAddress = new IPAddress(new byte[] { 192, 168, 150, 222 });
+            IPAddress ipAddress = new IPAddress(new byte[] { 192, 168, 150, 113 });
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
 
             // Create a TCP/IP  socket.  
@@ -21,11 +21,12 @@ namespace Client
             
             sender.Connect(remoteEP);
 
-            Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
-            Measurement measuredData = new Measurement("value22", "type22");
+            //Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
+            //Measurement measuredData = new Measurement("value22", "type22");
             
-            Sensor sensordata = new Sensor("id22", measuredData);
-            Common.XMLHandler.SavetoXml(sensordata);
+            //Sensor sensordata = new Sensor("id22", measuredData);
+            //Common.XMLHandler.SavetoXml(sensordata);
+
             sender.SendFile("Test.xml");
             
             Console.WriteLine("SENT");    
