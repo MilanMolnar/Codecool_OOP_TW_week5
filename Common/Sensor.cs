@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Common
 {
-    class Sensor
+    public class Sensor
     {
         public string ID { get; set; }
         public Measurement MeasurementOfSensor { get; set; }

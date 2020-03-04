@@ -1,4 +1,5 @@
 ﻿using System;
+using Server;
 
 namespace GreenCommitment
 {
@@ -6,7 +7,14 @@ namespace GreenCommitment
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length>0 &&  args[0].ToLower().Equals("server"))
+            {
+                Server.Server.Main();
+            }
+            else
+            {
+                Client.Client.Main();
+            }
         }
     }
 }
