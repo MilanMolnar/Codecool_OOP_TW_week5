@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Xml.Serialization;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace Common
 {
@@ -11,14 +12,14 @@ namespace Common
 
         public static void SavetoXml(Sensor sensor)
         {
-            using (StreamWriter writer = new StreamWriter("test.xml"))
-            {
-                XmlSerializer xml = new XmlSerializer(typeof(Sensor));
-                xml.Serialize(writer, sensor);
-            }
-
+            XElement measurement = new XElement("measurement");
+            measurement.Add(new XAttribute("id", sensor.ID));
+            measurement.Add(new XElement("time", sensor.MeasurementOfSensor.Time),
+                            new XElement("value", sensor.MeasurementOfSensor.Value),
+                            new XElement("type", sensor.MeasurementOfSensor.MeasurementType));
+            measurement.Save("measurement.xml");
         }
-        public Dictionary<string,Measurement> LoadFromXml() //String will be the sensor's ID
+        public Dictionary<string, Measurement> LoadFromXml() //String will be the sensor's ID
         {
             return null;
         }
