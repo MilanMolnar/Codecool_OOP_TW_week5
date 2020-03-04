@@ -11,7 +11,7 @@ namespace Client
     {
         public static void Main()
         {
-            IPAddress ipAddress = new IPAddress(new byte[] { 192, 168, 150, 113 });
+            IPAddress ipAddress = new IPAddress(new byte[] { 192, 168, 150, 89 });
             IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
 
             // Create a TCP/IP  socket.  
