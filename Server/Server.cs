@@ -13,15 +13,16 @@ namespace Server
 
         public static void Main()
         {
-            var date2 = DateTime.Now.Ticks;
-            DateTime date3 = new DateTime(date2);
-            Console.WriteLine(date3.ToString("yyyy'-'MM'-'dd'  'HH':'mm':'ss"));
-            Console.WriteLine(DateTime.Now.Ticks);
-            Console.WriteLine(DateTime.Now.Ticks);
-            Console.ReadKey();
+            
+            //var date2 = DateTime.Now.Ticks;
+            //DateTime date3 = new DateTime(date2);
+            //Console.WriteLine(date3.ToString("yyyy'-'MM'-'dd'  'HH':'mm':'ss"));
+            //Console.WriteLine(DateTime.Now.Ticks);
+            //Console.WriteLine(DateTime.Now.Ticks);
+            //Console.ReadKey();
 
-            Console.WriteLine(DateTime.Now.Millisecond);
-            Console.ReadKey();
+            //Console.WriteLine(DateTime.Now.Millisecond);
+            //Console.ReadKey();
             IPAddress ipAddress = IPAddress.Parse("192.168.150.222"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 12345);
 
@@ -51,19 +52,27 @@ namespace Server
             Socket client = listener.EndAccept(ar);
 
             //WHILE loop
-
+            
             byte[] buff = new byte[1024];
             int bytesReads = client.Receive(buff);
+            
+                if (bytesReads < buff.Length)
+                {
+                    using (System.IO.StreamWriter file =
+                    new System.IO.StreamWriter("recieved.xml", false))
+                    {
 
-            if (bytesReads < buff.Length)
-            {
-                Console.WriteLine("PITE: {0} {1}", bytesReads, Encoding.ASCII.GetString(buff, 0, bytesReads));
-            }
-            else
-            {
-                Console.WriteLine("KEX");
+                        file.WriteLine(Encoding.ASCII.GetString(buff, 0, bytesReads));
+                        Console.WriteLine("PITE: {0} ", bytesReads);
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine("KEX");
 
-            }
+                }
+            
             client.Close();
 
         }
