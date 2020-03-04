@@ -11,14 +11,15 @@ namespace Common
     {
         public string ID { get; set; }
         public Measurement MeasurementOfSensor { get; set; }
-        public Sensor(){}
-        public Sensor(string id)
+        public Sensor()
         {
-            ID = id;
+            Random random = new Random();
+            ID=random.Next(1, 100000).ToString();
+
         }
-        public void AddMeasurement(string value, string measurementType, DateTime time)
+        public void AddMeasurement(Measurement measurement)
         {
-            this.MeasurementOfSensor = new Measurement(value, measurementType, time);
+            this.MeasurementOfSensor = measurement;
         }
 
         public override string ToString()
