@@ -14,7 +14,6 @@ namespace Client
         public Sensor SensorData { get; set; }
         public int TimeInterval { get; set; } = 5000;
 
-
         public void Start()
         {
             while (true)
@@ -31,14 +30,13 @@ namespace Client
 
                 Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
 
-
                 Measurement measurement = new Measurement();
 
                 Sensor sensordata = new Sensor();
                 sensordata.AddMeasurement(measurement);
                 XMLHandler.SavetoXml(sensordata);
 
-                sender.SendFile("Test.xml");
+                sender.SendFile("measurement.xml");
 
                 Console.WriteLine("SENT");
                 sender.Shutdown(SocketShutdown.Both);
