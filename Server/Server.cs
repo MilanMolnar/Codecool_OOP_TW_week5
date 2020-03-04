@@ -23,7 +23,7 @@ namespace Server
 
             //Console.WriteLine(DateTime.Now.Millisecond);
             //Console.ReadKey();
-            IPAddress ipAddress = IPAddress.Parse("192.168.150.222"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
+            IPAddress ipAddress = IPAddress.Parse("192.168.150.15"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 12345);
 
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);

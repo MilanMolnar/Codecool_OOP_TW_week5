@@ -6,5 +6,19 @@ namespace Server
 {
     class ServerMenu
     {
+        public void DisplayChart()
+        {
+
+        }
+
+        public void StartServer()
+        {
+
+        }
+
+        public void StopServer()
+        {
+
+        }
     }
 }
