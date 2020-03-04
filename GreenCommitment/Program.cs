@@ -13,7 +13,7 @@ namespace GreenCommitment
             }
             else
             {
-                Client.Client.Main();
+                Client.ClientMenu.Main();
             }
         }
     }

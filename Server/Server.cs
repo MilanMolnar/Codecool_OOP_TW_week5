@@ -13,7 +13,7 @@ namespace Server
 
         public static void Main()
         {
-            
+
             //var date2 = DateTime.Now.Ticks;
             //DateTime date3 = new DateTime(date2);
             //Console.WriteLine(date3.ToString("yyyy'-'MM'-'dd'  'HH':'mm':'ss"));
@@ -23,6 +23,7 @@ namespace Server
 
             //Console.WriteLine(DateTime.Now.Millisecond);
             //Console.ReadKey();
+            //192.168.150.15
             IPAddress ipAddress = IPAddress.Parse("192.168.150.15"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 12345);
 
