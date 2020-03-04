@@ -60,7 +60,7 @@ namespace Client
 
             Console.WriteLine("SENT");
 
-            
+            StopClient(sender);
         }
 
         public void StopClient(Socket sender)

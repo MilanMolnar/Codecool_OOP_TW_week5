@@ -11,7 +11,8 @@ namespace Client
     {
         public static void Main()
         {
-            
+            ClientMenu clientMenu = new ClientMenu();
+            clientMenu.StartClient();
         }
     }
 }
