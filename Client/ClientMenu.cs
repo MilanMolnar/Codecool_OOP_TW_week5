@@ -33,6 +33,8 @@ namespace Client
                     { 
                         Console.WriteLine("Press:\n\t- 1) to set Server IP\n\t- 2) to set your ID.\n\t" +
                         " -3) to set Type of measurement.\n\t- 4) to go back for main menu.");
+                        Console.Write("Your choice: ");
+                        input= Console.ReadLine();
                         if (input.Equals("1"))
                         {
                             Console.Write("IP to connect: ");
@@ -62,6 +64,7 @@ namespace Client
 
                         else if (input.Equals("2"))
                         {
+                            Console.Write("Your ID: ");
                             input = Console.ReadLine();
                             sensor.ID = input;
                         }
