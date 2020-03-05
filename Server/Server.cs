@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using Common;
 
 namespace Server
 {
@@ -24,6 +25,8 @@ namespace Server
             //Console.WriteLine(DateTime.Now.Millisecond);
             //Console.ReadKey();
             //192.168.150.15
+            XMLTest();
+
             IPAddress ipAddress = IPAddress.Parse("192.168.150.222"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 12345);
 
@@ -43,6 +46,20 @@ namespace Server
             }
         }
 
+        private static void XMLTest()
+        {
+            Dictionary<string, List<Measurement>> dict = XMLHandler.LoadFromXml();
+            foreach (var kvp in dict)
+            {
+                Console.WriteLine(kvp.Key);
+                foreach(var ele in kvp.Value)
+                {
+                    Console.WriteLine("\t" + ele);
+                }
+                Console.WriteLine();
+            }
+            XMLHandler.SaveDictToXML(dict);
+        }
 
         private static void AcceptCallback(IAsyncResult ar)
         {
