@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Sensor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ID>47035</ID>
-  <MeasurementOfSensor>
-    <Time>2020-03-04T15:45:20.9905773</Time>
-    <Value>13</Value>
-    <MeasurementType>Air pressure</MeasurementType>
-  </MeasurementOfSensor>
-</Sensor>

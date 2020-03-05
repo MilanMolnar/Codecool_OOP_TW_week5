@@ -10,7 +10,7 @@ namespace Client
 {
     public class Client
     {
-        public byte[] ServerIPAddress { get; set; } = new byte[] { 192, 168, 150, 15 };
+        public byte[] ServerIPAddress { get; set; } = new byte[] { 192, 168, 150, 222 };
         public Sensor SensorData { get; set; }
         public int TimeInterval { get; set; } = 5000;
 
