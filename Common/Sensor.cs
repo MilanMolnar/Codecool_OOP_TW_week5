@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Net;
+using System.Net.Sockets;
 using System.Xml.Serialization;
 
 namespace Common
@@ -14,8 +14,7 @@ namespace Common
         public Sensor()
         {
             Random random = new Random();
-            ID=random.Next(1, 100000).ToString();
-
+            ID = GetLocalIPAddress();
         }
         public void AddMeasurement(Measurement measurement)
         {
@@ -25,6 +24,19 @@ namespace Common
         public override string ToString()
         {
             return $"Sensor ID : {ID}, Type: {MeasurementOfSensor.MeasurementType}, Value: {MeasurementOfSensor.Value}";
+        }
+
+        public string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
         }
     }
 }

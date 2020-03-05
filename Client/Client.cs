@@ -18,31 +18,43 @@ namespace Client
         {
             while (true)
             {
-                IPAddress ipAddress = new IPAddress(ServerIPAddress);
+                try
+                {
+                    IPAddress ipAddress = new IPAddress(ServerIPAddress);
 
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
+                    IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
 
-                // Create a TCP/IP  socket.  
-                Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                    // Create a TCP/IP  socket.  
+                    Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-                // Connect the socket to the remote endpoint. Catch any errors.  
-                sender.Connect(remoteEP);
+                    // Connect the socket to the remote endpoint. Catch any errors. 
 
-                Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
+                    sender.Connect(remoteEP);
 
-                Measurement measurement = new Measurement();
+                    Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
 
-                Sensor sensordata = new Sensor();
-                sensordata.AddMeasurement(measurement);
-                XMLHandler.SavetoXml(sensordata);
+                    Measurement measurement = new Measurement();
 
-                sender.SendFile("measurement.xml");
+                    Sensor sensordata = new Sensor();
+                    sensordata.AddMeasurement(measurement);
+                    XMLHandler.SavetoXml(sensordata);
 
-                Console.WriteLine("SENT");
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
+                    sender.SendFile("measurement.xml");
 
-                Thread.Sleep(TimeInterval);
+                    Console.WriteLine("SENT");
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+                }
+                catch (Exception)
+                {
+
+                    Console.WriteLine("Cannot send to the server!");
+                }
+                finally
+                {
+                    Thread.Sleep(TimeInterval);
+                }
+
             }
         }
     }
