@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sensor>
+  <measurements id="123">
+    <measurement>
+      <time>1519228781868</time>
+      <value>33</value>
+      <type>celsius</type>
+    </measurement>
+    <measurement>
+      <time>1519228787868</time>
+      <value>32</value>
+      <type>celsius</type>
+    </measurement>
+    <measurement>
+      <time>1519228793868</time>
+      <value>31</value>
+      <type>celsius</type>
+    </measurement>
+  </measurements>
+  <measurements id="666">
+    <measurement>
+      <time>1519228781868</time>
+      <value>33</value>
+      <type>celsius</type>
+    </measurement>
+    <measurement>
+      <time>1519228787868</time>
+      <value>32</value>
+      <type>celsius</type>
+    </measurement>
+    <measurement>
+      <time>1519228793868</time>
+      <value>31</value>
+      <type>celsius</type>
+    </measurement>
+  </measurements>
+</Sensor>
