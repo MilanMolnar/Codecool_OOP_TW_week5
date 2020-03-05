@@ -1,7 +1,8 @@
 {
   "profiles": {
     "GreenCommitment": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "server"
     }
   }
 }
