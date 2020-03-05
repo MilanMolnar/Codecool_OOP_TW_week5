@@ -13,7 +13,7 @@ namespace Server
 
         public static void Main()
         {
-
+            
             //var date2 = DateTime.Now.Ticks;
             //DateTime date3 = new DateTime(date2);
             //Console.WriteLine(date3.ToString("yyyy'-'MM'-'dd'  'HH':'mm':'ss"));
