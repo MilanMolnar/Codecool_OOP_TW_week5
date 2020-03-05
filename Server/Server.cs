@@ -24,7 +24,7 @@ namespace Server
             //Console.WriteLine(DateTime.Now.Millisecond);
             //Console.ReadKey();
             //192.168.150.15
-            IPAddress ipAddress = IPAddress.Parse("192.168.150.222"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
+            IPAddress ipAddress = IPAddress.Parse("192.168.150.36"); // google: how to get ipv4 in c#, elso talalat stackoverflow es nem lesz hardcodeolva. Just a tipp :)
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 12345);
 
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
@@ -53,27 +53,26 @@ namespace Server
             Socket client = listener.EndAccept(ar);
 
             //WHILE loop
-            
+
             byte[] buff = new byte[1024];
             int bytesReads = client.Receive(buff);
-            
-                if (bytesReads < buff.Length)
-                {
-                    using (System.IO.StreamWriter file =
-                    new System.IO.StreamWriter("recieved.xml", false))
-                    {
 
-                        file.WriteLine(Encoding.ASCII.GetString(buff, 0, bytesReads));
-                        Console.WriteLine("[INFO] Got data {0} ", bytesReads);
-                    }
-                    
-                }
-                else
+            if (bytesReads < buff.Length)
+            {
+                using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter("recieved.xml", false))
                 {
-                    Console.WriteLine("KEX");
-
+                    file.WriteLine(Encoding.ASCII.GetString(buff, 0, bytesReads));
+                    Console.WriteLine("[INFO] Got data from {0}: bytes: {1} ", client.LocalEndPoint, bytesReads);
                 }
-            
+
+            }
+            else
+            {
+                Console.WriteLine("KEX");
+
+            }
+
             client.Close();
 
         }
