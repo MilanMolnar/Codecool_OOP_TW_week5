@@ -64,7 +64,7 @@ namespace Server
                     {
 
                         file.WriteLine(Encoding.ASCII.GetString(buff, 0, bytesReads));
-                        Console.WriteLine("PITE: {0} ", bytesReads);
+                        Console.WriteLine("[INFO] Got data {0} ", bytesReads);
                     }
                     
                 }
