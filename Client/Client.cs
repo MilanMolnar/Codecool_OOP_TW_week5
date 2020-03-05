@@ -18,31 +18,38 @@ namespace Client
         {
             while (true)
             {
-                IPAddress ipAddress = new IPAddress(ServerIPAddress);
+                try
+                {
+                    IPAddress ipAddress = new IPAddress(ServerIPAddress);
 
-                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
+                    IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
 
-                // Create a TCP/IP  socket.  
-                Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                    // Create a TCP/IP  socket.  
+                    Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-                // Connect the socket to the remote endpoint. Catch any errors.  
-                sender.Connect(remoteEP);
+                    // Connect the socket to the remote endpoint. Catch any errors. 
 
-                Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
+                    sender.Connect(remoteEP);
 
-                Measurement measurement = new Measurement();
+                    Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
 
-                Sensor sensordata = new Sensor();
-                sensordata.AddMeasurement(measurement);
-                XMLHandler.SavetoXml(sensordata);
+                    XMLHandler.SavetoXml(SensorData);
 
-                sender.SendFile("measurement.xml");
+                    sender.SendFile("measurement.xml");
 
-                Console.WriteLine("SENT");
-                sender.Shutdown(SocketShutdown.Both);
-                sender.Close();
+                    Console.WriteLine("SENT");
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    Thread.Sleep(TimeInterval);
+                }
 
-                Thread.Sleep(TimeInterval);
             }
         }
     }

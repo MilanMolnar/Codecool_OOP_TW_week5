@@ -13,10 +13,9 @@ namespace Common
             Time = DateTime.Now.Ticks;
             
             Random random = new Random();
-            Value= random.Next(0, 35).ToString();
+            Value= random.Next(-20, 40).ToString();
 
-            string[] typeOfTypes = new string[] { "Celsius", "Humidity","Air pressure" };
-            MeasurementType = typeOfTypes[random.Next(0, typeOfTypes.Length)];
+            MeasurementType = "Celsius";
 
             Date = new DateTime(Time);
         }
