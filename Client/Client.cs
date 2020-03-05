@@ -13,24 +13,31 @@ namespace Client
         public byte[] ServerIPAddress { get; set; } = new byte[] { 192, 168, 150, 36 };
         public Sensor SensorData { get; set; }
         public int TimeInterval { get; set; } = 5000;
+        bool connected = false;
 
         public void Start()
         {
             while (true)
             {
+                IPAddress ipAddress = new IPAddress(ServerIPAddress);
+                IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
+                // Create a TCP/IP  socket.  
+                Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 try
                 {
-                    IPAddress ipAddress = new IPAddress(ServerIPAddress);
-
-                    IPEndPoint remoteEP = new IPEndPoint(ipAddress, 12345);
-
-                    // Create a TCP/IP  socket.  
-                    Socket sender = new Socket(remoteEP.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
-                    // Connect the socket to the remote endpoint. Catch any errors. 
-
-                    sender.Connect(remoteEP);
-
+                    while (!connected)
+                    {
+                        try
+                        {
+                            // Connect the socket to the remote endpoint. Catch any errors. 
+                            sender.Connect(remoteEP);
+                            connected = true;
+                        }
+                        catch (SocketException)
+                        {
+                            System.Console.WriteLine("Unable to connect to server. Retrying...");
+                        }
+                    }
                     Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
 
                     XMLHandler.SavetoXml(SensorData);
@@ -48,9 +55,10 @@ namespace Client
                 finally
                 {
                     Thread.Sleep(TimeInterval);
+                    connected = false;
                 }
-
             }
+
         }
     }
 }

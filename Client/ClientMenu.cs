@@ -11,7 +11,7 @@ namespace Client
     {
         public static void Main()
         {
-            Client client= new Client();
+            Client client = new Client();
             Sensor sensor = new Sensor();
             Measurement measurement = new Measurement();
 
@@ -29,18 +29,18 @@ namespace Client
                 }
                 else if (input.Equals("2"))
                 {
-                    while(true)
-                    { 
+                    while (true)
+                    {
                         Console.WriteLine("Press:\n\t- 1) to set Server IP\n\t- 2) to set your ID.\n\t" +
-                        " -3) to set Type of measurement.\n\t- 4) to go back for main menu.");
+                        " -3) to set Type of measurement.\n\t- 4) to go back to the main menu.");
                         Console.Write("Your choice: ");
-                        input= Console.ReadLine();
+                        input = Console.ReadLine();
                         if (input.Equals("1"))
                         {
                             Console.Write("IP to connect: ");
                             string ip = Console.ReadLine();
-                            string[] tmp=ip.Split(".");
-                            if(tmp.Length!=4)
+                            string[] tmp = ip.Split(".");
+                            if (tmp.Length != 4)
                             {
                                 throw new Exception("NotValidIP");
                             }
@@ -48,7 +48,7 @@ namespace Client
 
                             try
                             {
-                                foreach(var item in tmp)
+                                foreach (var item in tmp)
                                 {
                                     byte.Parse(item);
                                 }
@@ -99,7 +99,7 @@ namespace Client
                     }
                 }
                 else
-                    throw new Exception("InvalidInput!");  
+                    throw new Exception("InvalidInput!");
             }
         }
     }
