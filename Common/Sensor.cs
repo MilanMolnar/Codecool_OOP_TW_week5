@@ -13,7 +13,6 @@ namespace Common
         public Measurement MeasurementOfSensor { get; set; }
         public Sensor()
         {
-            Random random = new Random();
             ID = GetLocalIPAddress();
         }
         public void AddMeasurement(Measurement measurement)

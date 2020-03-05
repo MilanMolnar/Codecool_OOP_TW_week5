@@ -33,11 +33,7 @@ namespace Client
 
                     Console.WriteLine("Socket connected to {0}", sender.RemoteEndPoint.ToString());
 
-                    Measurement measurement = new Measurement();
-
-                    Sensor sensordata = new Sensor();
-                    sensordata.AddMeasurement(measurement);
-                    XMLHandler.SavetoXml(sensordata);
+                    XMLHandler.SavetoXml(SensorData);
 
                     sender.SendFile("measurement.xml");
 
@@ -47,8 +43,7 @@ namespace Client
                 }
                 catch (Exception)
                 {
-
-                    Console.WriteLine("Cannot send to the server!");
+                    throw;
                 }
                 finally
                 {

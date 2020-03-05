@@ -9,16 +9,23 @@ namespace Client
 {
     public class ClientMenu
     {
-        public void Modify(Client client, Sensor sensor)
+        public static void Main()
         {
-            while(true)
+            Client client= new Client();
+            Sensor sensor = new Sensor();
+            Measurement measurement = new Measurement();
+
+            sensor.AddMeasurement(measurement);
+            client.SensorData = sensor;
+
+            while (true)
             {
-                Console.WriteLine("Press:\n\t- 1) to set Server IP\n\t- 2) to set your ID.\n");
+                Console.WriteLine("Press:\n\t- 1) Start client\n\t- 2) Modify.\n");
                 string input = Console.ReadLine();
 
                 if (input.Equals("1"))
                 {
-
+                    client.Start();
                 }
                 else if (input.Equals("2"))
                 {
@@ -89,16 +96,8 @@ namespace Client
                     }
                 }
                 else
-                    throw new Exception("InvalidInput!");
-
-                
+                    throw new Exception("InvalidInput!");  
             }
-        }
-       
-        public static void Main()
-        {
-            Client client = new Client();
-            client.Start();
         }
     }
 }
